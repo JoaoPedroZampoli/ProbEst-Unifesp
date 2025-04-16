@@ -79,3 +79,105 @@ fac
 Tabela <- cbind(fa, fr, fac, porcent=100*fr)
 Tabela
 
+# Distribuição de frequências - Variável quantitativa discreta
+# Frequência absoluta
+fa <- table(dados$filhos)
+fa
+
+# Frequência Relativa
+fr <- prop.table(fa)
+fr
+
+# round: Deixando o número racional com 2 casas decimais
+fr <- round(fr, 2)
+fr
+
+# Frequência Acumulada
+fac <- cumsum(fr)
+fac
+
+# Montando a tabela (cbind organiza por colunas e rbind por linhas)
+Tabela <- cbind(fa, fr, fac, porcent=100*fr)
+Tabela
+
+# Agora fazendo o mesmo com Salário
+# Frequência Absoluta
+fa <- table(dados$salario)
+fa
+
+# Frequência Relativa
+fr <- prop.table(fa)
+fr
+
+# round: Arredonda o número para 2 casas decimais
+fr <- round(fr,2)
+fr
+
+# Frequência Acumulada
+fac <- cumsum(fr)
+fac
+
+# Montando a tabela com os dados
+Tabela <- cbind(fa, fr, fac, porcent = 100*fr)
+Tabela
+
+# Os dados ficam muito separados, é necessário realizar tratamento de dados
+# Distribuição de frequẽncia - Variável quantitativa contínua (CLASSES)
+range(dados$salario)
+nclass.Sturges(dados$salario)
+# cut: divide a variável nos intervalos especificados
+# l = 7: fornece 6 intervalos
+# Frequência Absoluta
+fa <- table(cut(dados$salario, seq(4, 23.30, l = 7)))
+fa
+fa <- table(cut(dados$salario, seq(3.9, 23.30, l = 7))) # 3.9 é necessário pois ele não contará o salário = 4 se a sequência começar exatamente em 4
+fa
+# Frequência relativa
+fr <- prop.table(fa)
+fr
+
+# round: deixando o número racional com 2 casas decimais
+fr <- round(fr, 2)
+fr
+
+fac <- cumsum(fr)
+fac
+
+Tabela <- cbind(fa, fr, fac)
+Tabela
+
+# Tabelas de Contingência
+cont <- table(dados$est_civil, dados$instrucao)
+cont
+
+# Gráfico em Barras (lembrando que table é contagem: fabs)
+par(mfrow = c(1,2)) # janela de plot multipainel (1 linha e 2 colunas)
+barplot(table(dados$filhos), main = "Número de Filhos")
+barplot(table(dados$filhos), main = "Número de Filhos", col = "red")
+
+# Gráfico de Pizza
+par(mfrow = c(1,2))
+pie(table(dados$instrucao), main="Instrução")
+pie(table(dados$procedencia), main="Procedência")
+
+# Histograma
+par(mfrow = c(1,3))
+hist(dados$salario)
+hist(dados$salario, nclass = 5)
+hist(dados$salario, nclass = 5, col = "blue", main = "Salário", freq=F) 
+# Freq = F: Coloca a densidade ao invés da quantidade de frequência do Histograma
+
+# BoxPlots
+par(mfrow = c(1,3))
+boxplot(dados$salario, main = "Salário")
+boxplot(dados$idade_ano, main = "Idade")
+boxplot(dados$filhos, main = "Filhos")
+
+# Medidas - Resumo
+mean(dados$salario)
+median(dados$salario)
+quantile(dados$salario)
+var(dados$salario)
+sd(dados$salario)
+IQR(dados$salario)
+summary(dados$salario)
