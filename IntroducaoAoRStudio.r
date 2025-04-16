@@ -45,7 +45,8 @@ getwd()
 # Em read.csv2(), o default é:
 # Separador de colunas = ";" e separador de casas decimais = ","
 
-dados <- read.csv2("/home/joao.zampoli/Downloads/Tabela_Questionario_Aula.csv")
+dados <- read.csv2("/home/joao.zampoli/Downloads/Tabela_Questionario_Aula.csv") # Meu ambiente no Linux
+dados <- read.csv2("C:/Users/jpsza/OneDrive/Documentos/GitHub/Pessoal/ProbEst-Unifesp/Tabela_Questionario_Aula.csv")
 dados
 
 # Informação resumida
